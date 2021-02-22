@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cryptic_mobile/home.dart';
 
 void main() => runApp(MaterialApp(home: LoginScreen()));
 //{
@@ -114,8 +115,10 @@ class _State extends State<LoginScreen> {
                             color: Colors.blue,
                             child: Text('Login'),
                             onPressed: () {
-                              print(nameController.text);
-                              print(passwordController.text);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => HomeScreen()),
+                              );
                             },
                           )),
                       Container(

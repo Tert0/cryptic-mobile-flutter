@@ -1,4 +1,4 @@
-import 'package:cryptic_mobile/request.dart';
+import 'package:cryptic_mobile/websocket.dart';
 
 Future<Map> make_login(String user_name, String pwd) async {
   Client client = await Client().init('wss://ws.cryptic-game.net');

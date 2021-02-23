@@ -1,6 +1,8 @@
+import 'package:cryptic_mobile/login_check.dart';
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/home.dart';
-import 'package:cryptic_mobile/login_check.dart';
+import 'package:cryptic_mobile/websocket.dart';
+//import 'package:cryptic_mobile/login_check.dart';
 
 void main() => runApp(MaterialApp(home: LoginScreen()));
 //{
@@ -119,6 +121,7 @@ class _State extends State<LoginScreen> {
                                 Map check = await make_login(
                                     nameController.text,
                                     passwordController.text);
+                                
                                 if (check['login'] == true) {
                                   Navigator.push(
                                     context,

@@ -10,7 +10,6 @@ class Client {
   WebSocket websocket;
   Stream stream;
 
-
   Future<Client> init(String url) async {
     this.websocket = await WebSocket.connect(url);
     this.stream = this.websocket.asBroadcastStream();
@@ -30,5 +29,15 @@ class Client {
       "endpoint": endpoint,
       "data": data,
     });
+  }
+
+  Future<Map> make_login(String user_name, String pwd) async {
+    dynamic resp = this.request({"action": "login", "name": user_name, "password": pwd});
+    if (resp.containsKey('token')) {
+    return {'login': true, 'token': resp['token']};
+  } else {
+    print('Wrong Credentials');
+    return {'login': false};
+  }
   }
 }

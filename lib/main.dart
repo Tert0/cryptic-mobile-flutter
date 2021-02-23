@@ -1,4 +1,3 @@
-import 'package:cryptic_mobile/login_check.dart';
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/home.dart';
 import 'package:cryptic_mobile/websocket.dart';
@@ -57,7 +56,9 @@ class LoginScreen extends StatefulWidget {
 class _State extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  Future<Client> client() async {
+    return await Client().init('wss://ws.cryptic-game.net');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,10 +119,11 @@ class _State extends State<LoginScreen> {
                               color: Colors.blue,
                               child: Text('Login'),
                               onPressed: () async {
-                                Map check = await make_login(
+                                Client client = await Client().init('wss://ws.cryptic-game.net');
+                                Map check = await client.login(
                                     nameController.text,
                                     passwordController.text);
-                                
+
                                 if (check['login'] == true) {
                                   Navigator.push(
                                     context,

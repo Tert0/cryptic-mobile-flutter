@@ -31,13 +31,13 @@ class Client {
     });
   }
 
-  Future<Map> make_login(String user_name, String pwd) async {
-    dynamic resp = this.request({"action": "login", "name": user_name, "password": pwd});
+  Future<Map> login(String user_name, String pwd) async {
+    dynamic resp = await this.request({"action": "login", "name": user_name, "password": pwd});
     if (resp.containsKey('token')) {
-    return {'login': true, 'token': resp['token']};
-  } else {
-    print('Wrong Credentials');
-    return {'login': false};
-  }
+      return {'login': true, 'token': resp['token']};
+    } else {
+      print('Wrong Credentials');
+      return {'login': false};
+    }
   }
 }

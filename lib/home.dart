@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _State extends State<HomeScreen> {
-  Future<int> online_player() async {
+  Future<int> onlinePlayer() async {
     Client cl = await Client().init('wss://ws.cryptic-game.net');
     int players = (await cl.request({"action": "status"}))['online'];
     return players;
@@ -18,10 +18,12 @@ class _State extends State<HomeScreen> {
   @override
   Widget build(context) {
     return FutureBuilder<int>(
-        future: online_player(),
+        future: onlinePlayer(),
         builder: (context, AsyncSnapshot<int> snapshot) {
           if (snapshot.hasData) {
-            return Center(child: Text(snapshot.data.toString()));
+            return Container(
+              color: Colors.grey[300],
+              child:Center(child: Text(snapshot.data.toString())));
           } else {
             return Center(
               child: Container(

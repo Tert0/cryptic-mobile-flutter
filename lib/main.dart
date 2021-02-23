@@ -59,6 +59,7 @@ class _State extends State<LoginScreen> {
   Future<Client> client() async {
     return await Client().init('wss://ws.cryptic-game.net');
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +81,8 @@ class _State extends State<LoginScreen> {
                       Container(
                         padding: EdgeInsets.all(10),
                         child: TextField(
+                          autocorrect: false,
+                          autofocus: true,
                           cursorColor: Colors.green,
                           controller: nameController,
                           decoration: InputDecoration(
@@ -93,6 +96,7 @@ class _State extends State<LoginScreen> {
                       Container(
                         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                         child: TextField(
+                          autocorrect: false,
                           cursorColor: Colors.green,
                           obscureText: true,
                           controller: passwordController,
@@ -119,7 +123,8 @@ class _State extends State<LoginScreen> {
                               color: Colors.blue,
                               child: Text('Login'),
                               onPressed: () async {
-                                Client client = await Client().init('wss://ws.cryptic-game.net');
+                                Client client = await Client()
+                                    .init('wss://ws.cryptic-game.net');
                                 Map check = await client.login(
                                     nameController.text,
                                     passwordController.text);
@@ -150,7 +155,6 @@ class _State extends State<LoginScreen> {
                                         );
                                       });
                                 }
-                                ;
                               })),
                       Container(
                           child: Row(

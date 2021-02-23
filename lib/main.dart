@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/home.dart';
+import 'package:cryptic_mobile/login_check.dart';
 
 void main() => runApp(MaterialApp(home: LoginScreen()));
 //{
@@ -111,16 +112,41 @@ class _State extends State<LoginScreen> {
                           height: 50,
                           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                           child: RaisedButton(
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            child: Text('Login'),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => HomeScreen()),
-                              );
-                            },
-                          )),
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              child: Text('Login'),
+                              onPressed: () async {
+                                Map check = await make_login(
+                                    nameController.text,
+                                    passwordController.text);
+                                if (check['login'] == true) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()),
+                                  );
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'Deine eingegeben Daten sind Falsch'),
+                                          actions: <Widget>[
+                                            FlatButton(
+                                              child: Text('Ok'),
+                                              onPressed: () {
+                                                passwordController.clear();
+                                                nameController.clear();
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }
+                                ;
+                              })),
                       Container(
                           child: Row(
                         children: <Widget>[
@@ -144,4 +170,3 @@ class _State extends State<LoginScreen> {
     );
   }
 }
-

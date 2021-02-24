@@ -1,6 +1,6 @@
-# Cryptic Mobile Branch from Heatdream
+# Cryptic Mobile Branch from Tert0
 
-This is the Branch from heatdream
+This is the Branch from Tert0
 
 ## Getting Started
 

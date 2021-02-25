@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/login_screen.dart';
-//import 'package:cryptic_mobile/login_check.dart';
+import 'package:cryptic_mobile/locator.dart';
 
-void main() => runApp(MaterialApp(home: LoginScreen()));
-
+void main() { 
+  setupLocator();
+  print("Setuped Locator");
+  runApp(MaterialApp(home: LoginScreen()));  
+}

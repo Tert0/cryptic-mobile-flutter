@@ -1,7 +1,8 @@
 import 'package:cryptic_mobile/websocket.dart';
+import 'package:cryptic_mobile/locator.dart';
 
 Future<Map> makeLogin(String userName, String pwd) async {
-  Client client = await Client().init('wss://ws.cryptic-game.net');
+  Client client = locator<Client>();
   Map response = await client
       .request({"action": "login", "name": userName, "password": pwd});
   if (response.containsKey('token')) {

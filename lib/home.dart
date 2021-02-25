@@ -12,7 +12,9 @@ class HomeScreen extends StatefulWidget {
 class _State extends State<HomeScreen> {
   Future<int> onlinePlayer() async {
     Client cl = locator<Client>();
+    print(cl);
     int players = (await cl.request({"action": "status"}))['online'];
+    print(players);
     return players;
   }
 
@@ -52,20 +54,23 @@ class _State extends State<HomeScreen> {
                         tileColor: Colors.grey,
                         title: Text('Spieler online'),
                         onTap: () {
-                          return AlertDialog(
-                            title: Center(
-                                child: Text(
-                                    'Es sind momentan $snapshot.data.toString() online')),
-                            backgroundColor: Colors.grey[300],
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text('Ok'),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
+                          return Container(
+                            color: Colors.green,
                           );
+                          // return AlertDialog(
+                          //   title: Center(
+                          //       child: Text(
+                          //           'Es sind momentan $snapshot.data.toString() online')),
+                          //   backgroundColor: Colors.grey[300],
+                          //   actions: <Widget>[
+                          //     FlatButton(
+                          //       child: Text('Ok'),
+                          //       onPressed: () {
+                          //         Navigator.of(context).pop();
+                          //       },
+                          //     ),
+                          //   ],
+                          // );
                         },
                       );
                     } else {

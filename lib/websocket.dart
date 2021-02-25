@@ -27,6 +27,8 @@ class Client {
       await this.init(this.url);
     }
     this.websocket.add(jsonEncode(data));
+    print('making request');
+    print(jsonDecode(await this.stream.first));
     return jsonDecode(await this.stream.first);
   }
 
@@ -40,8 +42,10 @@ class Client {
   }
 
   Future<Map> login(String userName, String pwd) async {
-    dynamic resp = await this.request({"action": "login", "name": userName, "password": pwd});
+    dynamic resp = await this
+        .request({"action": "login", "name": userName, "password": pwd});
     if (resp.containsKey('token')) {
+      print('Logged in');
       return {'login': true, 'token': resp['token']};
     } else {
       print('Wrong Credentials');

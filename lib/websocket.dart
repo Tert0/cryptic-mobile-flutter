@@ -9,6 +9,11 @@ class Client {
   bool loggedIn = false;
   WebSocket socket;
   Stream stream;
+  String url;
+
+  Client(String url) {
+    this.url = url;
+  }
 
   Future<Client> init(String url) async {
     this.socket = await WebSocket.connect(url);
@@ -18,7 +23,10 @@ class Client {
   }
 
   Future<dynamic> request(Map data) async {
-    this.socket.add(jsonEncode(data));
+    if (this.websocket == null) {
+      await this.init(this.url);
+    }
+    this.websocket.add(jsonEncode(data));
     return jsonDecode(await this.stream.first);
   }
 

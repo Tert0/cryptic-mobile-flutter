@@ -105,7 +105,6 @@ class _State extends State<LoginScreen> {
                                               child: Text('Ok'),
                                               onPressed: () {
                                                 passwordController.clear();
-                                                nameController.clear();
                                                 Navigator.of(context).pop();
                                               },
                                             ),

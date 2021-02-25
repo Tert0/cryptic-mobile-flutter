@@ -13,7 +13,9 @@ class _State extends State<HomeScreen> {
   Future<int> onlinePlayer() async {
     Client cl = locator<Client>();
     print('erthgrh');
-    int players = (await cl.request({"action": "status"}))['online'];
+    dynamic resp = await cl.request({"action":"status"});
+    print(resp);
+    int players = resp['online'];
     print('ssssss');
     print(players);
     return players;

@@ -11,9 +11,6 @@ class LoginScreen extends StatefulWidget {
 class _State extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  Future<Client> client() async {
-    return locator<Client>();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +79,6 @@ class _State extends State<LoginScreen> {
                                 dynamic check = await client.login(
                                     nameController.text,
                                     passwordController.text);
-
                                 if (check != false) {
                                   passwordController.clear();
                                   Navigator.push(

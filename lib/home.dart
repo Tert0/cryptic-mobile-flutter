@@ -12,7 +12,10 @@ class HomeScreen extends StatefulWidget {
 class _State extends State<HomeScreen> {
   Future<int> onlinePlayer() async {
     Client cl = locator<Client>();
+    print('erthgrh');
     int players = (await cl.request({"action": "status"}))['online'];
+    print('ssssss');
+    print(players);
     return players;
   }
 

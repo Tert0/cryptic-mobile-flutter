@@ -79,12 +79,11 @@ class _State extends State<LoginScreen> {
                               child: Text('Login'),
                               onPressed: () async {
                                 Client client = locator<Client>();
-                                Map check = await client.login(
+                                dynamic check = await client.login(
                                     nameController.text,
                                     passwordController.text);
 
-                                if (check['login'] == true) {
-                                  nameController.clear();
+                                if (check != false) {
                                   passwordController.clear();
                                   Navigator.push(
                                     context,

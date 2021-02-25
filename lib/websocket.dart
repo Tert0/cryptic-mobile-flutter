@@ -39,13 +39,15 @@ class Client {
     });
   }
 
-  Future<Map> login(String userName, String pwd) async {
+  Future<dynamic> login(String userName, String pwd) async {
     dynamic resp = await this.request({"action": "login", "name": userName, "password": pwd});
+    if (resp.containsKey('error')) {
+      return false;
+    }
     if (resp.containsKey('token')) {
-      return {'login': true, 'token': resp['token']};
+      return resp['token'];
     } else {
-      print('Wrong Credentials');
-      return {'login': false};
+      throw 'Invalid Response';
     }
   }
 }

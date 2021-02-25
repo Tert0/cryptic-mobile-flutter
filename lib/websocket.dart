@@ -7,7 +7,7 @@ var uuid = Uuid();
 
 class Client {
   bool loggedIn = false;
-  WebSocket socket;
+  WebSocket websocket;
   Stream stream;
   String url;
 
@@ -16,8 +16,8 @@ class Client {
   }
 
   Future<Client> init(String url) async {
-    this.socket = await WebSocket.connect(url);
-    this.stream = this.socket.asBroadcastStream();
+    this.websocket = await WebSocket.connect(url);
+    this.stream = this.websocket.asBroadcastStream();
     print('Connected');
     return this;
   }

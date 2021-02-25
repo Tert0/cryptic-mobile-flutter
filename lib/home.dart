@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/websocket.dart';
+import 'package:cryptic_mobile/locator.dart';
 
 void main() => runApp(MaterialApp(home: HomeScreen()));
 
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _State extends State<HomeScreen> {
   Future<int> onlinePlayer() async {
-    Client cl = await Client().init('wss://ws.cryptic-game.net');
+    Client cl = locator<Client>();
     int players = (await cl.request({"action": "status"}))['online'];
     return players;
   }

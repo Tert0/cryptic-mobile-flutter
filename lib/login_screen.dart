@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cryptic_mobile/home.dart';
 import 'package:cryptic_mobile/websocket.dart';
+import 'package:cryptic_mobile/locator.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _State extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Future<Client> client() async {
-    return await Client().init('wss://ws.cryptic-game.net');
+    return locator<Client>();
   }
 
   @override
@@ -77,8 +78,7 @@ class _State extends State<LoginScreen> {
                               color: Colors.blue,
                               child: Text('Login'),
                               onPressed: () async {
-                                Client client = await Client()
-                                    .init('wss://ws.cryptic-game.net');
+                                Client client = locator<Client>();
                                 Map check = await client.login(
                                     nameController.text,
                                     passwordController.text);

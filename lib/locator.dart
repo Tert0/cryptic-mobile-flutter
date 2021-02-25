@@ -4,6 +4,6 @@ import 'package:cryptic_mobile/websocket.dart';
 
 GetIt locator = GetIt.instance;
 
-void setup_locator() {
+void setupLocator() {
   locator.registerLazySingleton<Client>(() => Client('wss://ws.cryptic-game.net'));
 }
